@@ -1,0 +1,34 @@
+@import '~bootstrap/scss/bootstrap';
+@import 'custom';
+
+.layout-container {
+  padding: 20px;
+}
+
+.navigator-container {
+  padding: 20px;
+}
+
+.header-container {
+    margin-bottom: 2vh;
+}
+
+.headertext {
+    background-color: tomato;
+    color: white;
+    padding: 20px;
+}
+
+.footer-container {
+    margin-top: 2vh;
+}
+
+.footertext {
+    background-color: tomato;
+    color: white;
+    padding: 20px;
+    align-self: flex-end;
+}
+
+
+
