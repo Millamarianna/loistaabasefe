@@ -1,17 +1,19 @@
-//import Container from 'react-bootstrap/Container';
-//import Row from 'react-bootstrap/Row';
-//import Col from 'react-bootstrap/Col';
-//import Button from 'react-bootstrap/Button';
-//import Modal from 'react-bootstrap/Modal';
-//import Form from 'react-bootstrap/Form';
-//import { Image } from "react-bootstrap";
+import Container from 'react-bootstrap/Container';
+import Map from '../components/Map';
+import Social from '../components/Social';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
+import { Image } from "react-bootstrap";
 
 //To use edit:
-//import { useState, useEffect } from 'react';
-//import useAuth from "../hooks/useAuth";
+import { useState, useEffect } from 'react';
+import useAuth from "../hooks/useAuth";
 
 const Home = () => {
-    /* const { isLoggedIn, setLoggedIn, auth, setAuth } = useAuth();
+    const { isLoggedIn, setLoggedIn, auth, setAuth } = useAuth();
   const [texts, setTexts] = useState([]);
   const [textToEdit, setTextToEdit] = useState({
     "_id": "",
@@ -39,7 +41,6 @@ const Home = () => {
       });
       if (response.ok) {
         let textData = await response.json();
-        console.log("getTexts:" + JSON.stringify(textData));
         setTexts(textData);
         setLoading(false);
       }
@@ -72,7 +73,6 @@ const Home = () => {
   };
 
   const edit = (e) => {
-    console.log("edit" + e.target.id);
     let editable = texts.find(x => x._id === e.target.id);
     setTextToEdit(editable)
     setShow(true);
@@ -90,17 +90,96 @@ const Home = () => {
   };
 
   const add = () => {
-    console.log("add");
     setTextToEdit({ ...textToEdit, body: [...textToEdit.body, ""] });
   }
 
   const del = (e) => {
-    console.log("del" + e.target.id);
     let newBody = textToEdit.body.filter((item, index) => index != e.target.id);
     setTextToEdit({ ...textToEdit, body: newBody });
   }
 
-  const handleClose = () => setShow(false); */
+  const handleClose = () => setShow(false); 
+
+  console.log(isLoggedIn);
+
+    return (
+        <>
+        {loading ? (<div>loading...</div>) :
+        (<Container className="container-fluid" style={{ marginTop: '3vh' }}>
+          <Row style={{padding: '0.5vh'}}>
+          <Col sm={8}>
+              <b>{texts.find(x => x._id === "657c43a2ea1d95a5fc6c4092").header}</b>
+            </Col>
+            <Col sm={4}>
+            
+            </Col>
+          </Row>
+          <Row style={{padding: '0.5vh'}}>
+            <Col sm={8}>
+              {texts.find(x => x._id === "657c43a2ea1d95a5fc6c4092").body.map((data) => {
+                return (
+                  <p id={data.toString()}>
+                    {data}
+                  </p>
+                )
+              })}
+              {isLoggedIn && auth.role == "admin" ?
+                (<Button id="657c43a2ea1d95a5fc6c4092" variant="danger" onClick={(e) => edit(e)}>
+                  Muokkaa
+                </Button>)
+                : null}
+            </Col>
+
+            <Col sm={4}>
+              
+            </Col>
+          </Row>
+          <Row style={{padding: '0.5vh'}}>
+            <Col sm>Etiam non dui nulla. Nullam at tempor urna. Praesent sed eros metus. Quisque semper, leo eu pretium ullamcorper, augue lectus sodales sem, eu tristique metus justo a turpis. Phasellus egestas mi vitae nunc eleifend, quis mattis dui vehicula. Phasellus a lorem gravida, sollicitudin purus venenatis, cursus arcu. Nullam in euismod nibh. Sed tristique dolor arcu, eget cursus nisi tincidunt sed. Nulla posuere massa in lectus mollis, ut egestas est aliquam. Vestibulum bibendum, mi ut mattis condimentum, augue leo eleifend enim, non dictum nisl erat a risus. Suspendisse auctor, lectus ac semper vestibulum, eros orci commodo nulla, ut porta magna metus ut dolor. Maecenas pharetra turpis vitae nibh commodo, luctus porttitor magna rhoncus. Phasellus hendrerit sagittis erat, a congue magna imperdiet at. Sed congue rutrum malesuada. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed cursus, nunc at gravida dignissim, tortor arcu pellentesque ipsum, non semper augue orci quis lorem. </Col>
+            <Col sm>Mauris elementum ligula velit, et luctus mauris lobortis et. Integer leo metus, molestie non consequat et, rutrum quis massa. Aliquam semper nulla mi, id eleifend ante consequat quis. Vestibulum varius hendrerit massa et maximus. In laoreet accumsan condimentum. Duis libero lorem, ultricies commodo pharetra vitae, malesuada non elit. Donec iaculis, nisl nec condimentum suscipit, elit mauris imperdiet lacus, vitae sollicitudin purus urna vitae ipsum. Duis et luctus erat, at varius ipsum. </Col>
+            <Col sm>Praesent sit amet volutpat urna. Sed non auctor urna. Quisque aliquam sit amet leo vel ornare. Morbi ut ante nisi. Phasellus purus enim, tincidunt vel hendrerit vitae, sollicitudin eget sapien. Etiam bibendum mollis tincidunt. Nulla vitae maximus tortor. Integer consectetur quis ligula nec cursus. Nulla nisl magna, rutrum a luctus sit amet, commodo sed arcu. Aliquam eu efficitur nulla. Ut tristique tellus nec lacinia sollicitudin. Nam non mattis turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </Col>
+          </Row>
+        </Container>)}
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Muokkaa tekstiä</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Otsikko</Form.Label>
+              <Form.Control type="text" placeholder={textToEdit.header} name="header" value={textToEdit.header} onChange={handleInputChange} />
+            </Form.Group>
+
+            {textToEdit.body.map((data, index) => {
+              return (
+                <Form.Group className="mb-3" id={index.toString()}>
+                  <Form.Label>Tekstikappale {index + 1 } &nbsp;&nbsp;&nbsp;&nbsp;</Form.Label><Button variant="secondary" id={index} onClick={(e) => del(e)}> Poista</Button>
+                  <Form.Control as="textarea" placeholder={textToEdit.body[index]} name={index} value={textToEdit.body[index]} onChange={handleBodyInputChange} />
+                </Form.Group>
+              )
+            })}
+            <Button variant="secondary" onClick={add}>Lisää tekstikappale</Button>
+
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            PERUUTA
+          </Button>
+          <Button variant="primary" onClick={handleEditText}>
+            PÄIVITÄ TIEDOT
+          </Button>
+        </Modal.Footer>
+      </Modal>
+        <Container fluid className="home-container">
+            <h1>Home</h1>
+            <p>Some text</p>
+            {/* <Map/>
+            <Social/> */}
+        </Container>
+        </>
+    );
 
 }
 

@@ -14,13 +14,14 @@ import logo200 from '../assets/logo200.png';
 import logo300 from '../assets/logo300.png';
 
 //Import useAuth hook
-//import useAuth from "../hooks/useAuth";
-//import { BiSolidLock } from "react-icons/bi";
-//import { BiSolidLockOpen } from "react-icons/bi";
+import useAuth from "../hooks/useAuth";
+import { useEffect } from "react";
+import { BiSolidLock } from "react-icons/bi";
+import { BiSolidLockOpen } from "react-icons/bi";
 
 const Layout = () => {
 
-    /*  //useAuth hook provides auth state and functions to update it
+    //useAuth hook provides auth state and functions to update it
    const { isLoggedIn, setLoggedIn, auth, setAuth } = useAuth();
  
    //Check if user is logged in by checking the cookie
@@ -44,7 +45,7 @@ const Layout = () => {
      // Update login state to trigger re-render
      setLoggedIn(false);
      setAuth({});
-   }; */
+   };
 
     return (
         <Container className="layout-container" fluid>

@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Import the pages
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 // Import the components
 import Layout from './components/Layout';
 //import RequireAuthentication from './components/RequireAuthentication';
@@ -12,6 +13,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
+        <Route path="login" element={<Login />} />
 
         {/* <Route element={<RequireAuthentication />}>
           <Route path="user" element={<User />} />
