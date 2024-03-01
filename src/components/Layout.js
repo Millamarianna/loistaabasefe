@@ -16,13 +16,13 @@ import logo300 from '../assets/logo300.png';
 //Import useAuth hook
 import useAuth from "../hooks/useAuth";
 import { useEffect } from "react";
-import { BiSolidLock } from "react-icons/bi";
-import { BiSolidLockOpen } from "react-icons/bi";
+//import { BiSolidLock } from "react-icons/bi";
+//import { BiSolidLockOpen } from "react-icons/bi";
 
 const Layout = () => {
 
     //useAuth hook provides auth state and functions to update it
-   const { isLoggedIn, setLoggedIn, auth, setAuth } = useAuth();
+   const { isLoggedIn, setLoggedIn, setAuth } = useAuth();
  
    //Check if user is logged in by checking the cookie
    useEffect(() => {
