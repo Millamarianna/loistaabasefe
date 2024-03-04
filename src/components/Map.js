@@ -2,6 +2,7 @@ import React from "react";
 
 const Map = () => {
     const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+    console.log("API Key:", apiKey);
     return (
         <div className="google-map-code">
             <iframe
