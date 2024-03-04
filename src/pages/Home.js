@@ -175,8 +175,8 @@ const Home = () => {
         <Container fluid className="home-container">
             <h1>Home</h1>
             <p>Some text</p>
-            {/* <Map/>
-            <Social/> */}
+            <Map/>
+            <Social/>
         </Container>
         </>
     );
