@@ -41,11 +41,8 @@ jobs:
         env:
           CI: false
           REACT_APP_GOOGLE_MAPS_API_KEY: ${{ secrets.REACT_APP_GOOGLE_MAPS_API_KEY }}
-
-      - name: Debug // Fix the issue by moving the value to the same line as the key
-        run: echo "REACT_APP_GOOGLE_MAPS_API_KEY=${{ secrets.REACT_APP_GOOGLE_MAPS_API_KEY }}"
+          REACT_APP_DB: ${{ secrets.REACT_APP_DB }}
           
-
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest

@@ -9,6 +9,7 @@ import useAuth from "../hooks/useAuth";
 import cookie from 'cookie'
 
 const Login = () => {
+  const db = process.env.REACT_APP_DB;
   const [apiError, setApiError] = useState();
   const { isLoggedIn, setLoggedIn, setAuth } = useAuth();
   const cookie = require('cookie');
@@ -17,7 +18,7 @@ const Login = () => {
   const { register, handleSubmit, formState: { errors }, } = useForm();
 
   const getUserData = async (token) => {
-    const response = await fetch("https://fam-backend-base.azurewebsites.net/users/me", {
+    const response = await fetch(`${db}/users/me`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -41,7 +42,7 @@ const Login = () => {
   };
 
   const onFormSubmit = async (data) => {
-    const response = await fetch("https://fam-backend-base.azurewebsites.net/users/login", {
+    const response = await fetch(`${db}/users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

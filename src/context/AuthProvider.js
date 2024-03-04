@@ -8,6 +8,7 @@ const AuthContext = createContext({
 });
 
 export const AuthProvider = ({ children }) => {
+    const db = process.env.REACT_APP_DB;
     const [auth, setAuth] = useState({});
     const [isLoggedIn, setLoggedIn] = useState(false);
 
@@ -19,7 +20,7 @@ export const AuthProvider = ({ children }) => {
             if (jwtCookie) {
                 const jwtToken = jwtCookie.split("=")[1];
 
-                const response = await fetch("https://fam-backend-base.azurewebsites.net/users/me", {
+                const response = await fetch(`${db}/users/me`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
