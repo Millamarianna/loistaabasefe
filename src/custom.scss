@@ -1,6 +1,8 @@
-$theme-colors: (
-  'info': tomato,
-  'danger': teal
-);
+$fonts: haboro-soft, sans-serif;
+$headerfont: "swear-display", serif;
+$enable-negative-margins: true;
+$font-color: black;
+$background-color: #f1efeb;
+
 
 @import '~bootstrap/scss/bootstrap';

@@ -1,7 +1,22 @@
 @import '~bootstrap/scss/bootstrap';
 @import 'custom';
 
-.layout-container {
+
+
+html,body {
+  background-color: white; 
+  height: 100vh;
+  margin: 0;
+  font-family: $fonts; 
+  font-weight: 400;
+  font-style: normal;
+  color: $font-color;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.layout-f-container {
   padding: 20px;
 }
 
@@ -9,18 +24,163 @@
   padding: 20px;
 }
 
-.header-container {
+.header-f-container {
     margin-bottom: 2vh;
+}
+
+.header-o-container {
+  background-image: linear-gradient( to right, transparent, #F7EDDB, transparent); 
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #E5D1B5;
+  border-top: 1px solid #F7EDDB;
+  margin-bottom: 2vh;
+  color: #2E3D33;
+}
+
+.o-headertext {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 35px;
+  font-size: 2.5em;
+  font-family: $headerfont;
+  font-weight: 500;
+  font-style: italic;
+  color: $font-color;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.o-linktext {
+  font-size: 1.5em;
+  font-family: $headerfont;
+  font-weight: 500;
+  font-style: italic;
+  color: $font-color;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .headertext {
     background-color: tomato;
     color: white;
     padding: 20px;
+    
 }
+
+.home-button {
+  background-color: #F7EDDB;
+  color: #2E3D33;
+  border: 2px solid #2E3D33;
+  --slant: 0,7em
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.home-button:hover {
+  background-color: #2E3D33;
+  color: white;
+}
+
+
+.o-headerbutton {
+  --border: 1px;    /* the border width */
+  --slant: 0.7em;   /* control the slanted corners */
+  --color: #2E3D33; /* the color */
+  
+  font-size: 20px;
+  padding: 0.4em 1.2em;
+  border: none;
+  cursor: pointer;
+  font-weight: normal;
+  color: var(--color);
+  background: 
+     linear-gradient(to bottom left,var(--color)  50%,#0000 50.1%) top right,
+     linear-gradient(to top   right,var(--color)  50%,#0000 50.1%) bottom left;
+  background-size: calc(var(--slant) + 1.3*var(--border)) calc(var(--slant) + 1.3*var(--border));
+  background-repeat: no-repeat;
+  box-shadow:
+    0 0 0 200px inset var(--s,#0000),
+    0 0 0 var(--border) inset var(--color);
+  clip-path: 
+      polygon(0 0, calc(100% - var(--slant)) 0, 100% var(--slant),
+              100% 100%, var(--slant) 100%,0 calc(100% - var(--slant))
+             );
+  transition: color var(--t,0.3s), background-size 0.3s;
+}
+.o-headerbutton:focus-visible {
+  outline-offset: calc(-1*var(--border));
+  outline: var(--border) solid #E5D1B5;
+  clip-path: none;
+  background-size: 0 0;
+}
+.o-headerbutton:hover,
+.o-headerbutton:active{
+  background-size: 100% 100%;
+  background-color: #F7EDDB;
+  color: #fff;
+  --t: 0.2s 0.1s;
+}
+.o-headerbutton:active {
+  --s: #0005;
+  transition: none;
+}
+
+/* .o-headerbutton {
+  background-color: white !important;
+  color: black !important;
+  border: 2px solid #555555 !important;
+  padding: 16px 32px !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  font-size: 16px !important;
+  margin: 4px 2px !important;
+  transition-duration: 0.4s !important;
+  cursor: pointer !important;
+}
+
+
+.o-headerbutton:hover {
+  background-color: #555555 !important;
+  color: white !important;
+}
+ */
+.blaketon {
+  font-family: mrblaketon-pro, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: $font-color;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+    }
 
 .footer-container {
     margin-top: 2vh;
+}
+
+.o-footer-container { 
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #E5D1B5;
+  margin-top: 2vh;
+}
+
+.o-footertext {
+  font-family: "swear-display", serif;
+  font-weight: 500;
+  font-style: italic;
+  color: $font-color;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 20px;
+  align-self: flex-end;
 }
 
 .footertext {
@@ -36,12 +196,20 @@
 }
 
 .login-container {
-    background-color: lightgreen;
     padding: 20px;
 }
 
+h3 {
+    font-family: "swear-display", serif;
+    font-weight: 500;
+    font-style: italic;
+    color: $font-color;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 .social-container {
-    background: #eee;
+    background: #F7EDDB;
     padding: 25px 50px;
   }
   

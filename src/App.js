@@ -4,16 +4,23 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 // Import the components
-import Layout from './components/Layout';
-//import RequireAuthentication from './components/RequireAuthentication';
+import Layout_forest from './components/Layout_forest';
+import Layout_ocean from './components/Layout_ocean';
+import RequireAuthentication from './components/RequireAuthentication';
 
 function App() {
   return (
     <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
+      <Route path="/" element={<Layout_forest />}>
+        <Route index element={<Home lay="1" />} />
         <Route path="login" element={<Login />} />
+        </Route>
+
+        <Route path="vaihtoehto2" element={<Layout_ocean />}>
+          <Route index element={<Home lay="2" />} />
+          <Route path="login" element={<Login />} />
+        </Route>
 
         {/* <Route element={<RequireAuthentication />}>
           <Route path="user" element={<User />} />
@@ -24,7 +31,7 @@ function App() {
           <Route path="appointments" element={<AdminAppointments />} />
           <Route path="createappointments" element={<AdminCreateAppointments />} />
         </Route> */}
-      </Route>
+      
     </Routes>
   </BrowserRouter>
   );

@@ -1,19 +1,28 @@
 import Container from 'react-bootstrap/Container';
-import Map from '../components/Map';
-import Social from '../components/Social';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import { Image } from "react-bootstrap";
+import Image from 'react-bootstrap/Image';
+import Spinner from 'react-bootstrap/Spinner';
+
+import { FaArrowRightLong } from "react-icons/fa6";
+
+import Map from '../components/Map';
+import Social from '../components/Social';
+import terapiaterttu from '../assets/terttu.jpeg';
 
 //To use edit:
 import { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
-const Home = () => {
-    const { isLoggedIn, setLoggedIn, auth, setAuth } = useAuth();
+const Home = (props) => {
+  let navigate = useNavigate();
+  const lay = props.lay;
+  console.log("Home, lay:" + lay);
+  const { isLoggedIn, setLoggedIn, auth, setAuth } = useAuth();
   const [texts, setTexts] = useState([]);
   const [textToEdit, setTextToEdit] = useState({
     "_id": "",
@@ -102,20 +111,29 @@ const Home = () => {
 
   console.log(isLoggedIn);
 
+  const next = () => {
+    if (lay == 1) {
+      navigate("/vaihtoehto2", { replace: true });
+    }
+    else {
+    navigate("/", { replace: true });
+    }
+  }
+
     return (
-        <>
-        {loading ? (<div>loading...</div>) :
-        (<Container className="container-fluid" style={{ marginTop: '3vh' }}>
+        <><Container className="container-fluid" style={{ marginTop: '3vh' }}>
+        {loading ? (<Spinner animation="border" variant="success" />) :
+        (<>
           <Row style={{padding: '0.5vh'}}>
-          <Col sm={8}>
+          <Col lg={12} xl={5}>
               <b>{texts.find(x => x._id === "657c43a2ea1d95a5fc6c4092").header}</b>
             </Col>
-            <Col sm={4}>
-            
+            <Col lg={12} xl={3}>
+            <Button onClick={next} className="home-button">{<FaArrowRightLong />} Vaihda näkymä</Button>
             </Col>
           </Row>
           <Row style={{padding: '0.5vh'}}>
-            <Col sm={8}>
+            <Col lg={12} xl={8}>
               {texts.find(x => x._id === "657c43a2ea1d95a5fc6c4092").body.map((data) => {
                 return (
                   <p id={data.toString()}>
@@ -130,16 +148,37 @@ const Home = () => {
                 : null}
             </Col>
 
-            <Col sm={4}>
-              
+            <Col lg={12} xl={4}>
+            <Image src={terapiaterttu} fluid roundedCircle thumbnail  />
             </Col>
           </Row>
           <Row style={{padding: '0.5vh'}}>
-            <Col sm>Etiam non dui nulla. Nullam at tempor urna. Praesent sed eros metus. Quisque semper, leo eu pretium ullamcorper, augue lectus sodales sem, eu tristique metus justo a turpis. Phasellus egestas mi vitae nunc eleifend, quis mattis dui vehicula. Phasellus a lorem gravida, sollicitudin purus venenatis, cursus arcu. Nullam in euismod nibh. Sed tristique dolor arcu, eget cursus nisi tincidunt sed. Nulla posuere massa in lectus mollis, ut egestas est aliquam. Vestibulum bibendum, mi ut mattis condimentum, augue leo eleifend enim, non dictum nisl erat a risus. Suspendisse auctor, lectus ac semper vestibulum, eros orci commodo nulla, ut porta magna metus ut dolor. Maecenas pharetra turpis vitae nibh commodo, luctus porttitor magna rhoncus. Phasellus hendrerit sagittis erat, a congue magna imperdiet at. Sed congue rutrum malesuada. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed cursus, nunc at gravida dignissim, tortor arcu pellentesque ipsum, non semper augue orci quis lorem. </Col>
-            <Col sm>Mauris elementum ligula velit, et luctus mauris lobortis et. Integer leo metus, molestie non consequat et, rutrum quis massa. Aliquam semper nulla mi, id eleifend ante consequat quis. Vestibulum varius hendrerit massa et maximus. In laoreet accumsan condimentum. Duis libero lorem, ultricies commodo pharetra vitae, malesuada non elit. Donec iaculis, nisl nec condimentum suscipit, elit mauris imperdiet lacus, vitae sollicitudin purus urna vitae ipsum. Duis et luctus erat, at varius ipsum. </Col>
-            <Col sm>Praesent sit amet volutpat urna. Sed non auctor urna. Quisque aliquam sit amet leo vel ornare. Morbi ut ante nisi. Phasellus purus enim, tincidunt vel hendrerit vitae, sollicitudin eget sapien. Etiam bibendum mollis tincidunt. Nulla vitae maximus tortor. Integer consectetur quis ligula nec cursus. Nulla nisl magna, rutrum a luctus sit amet, commodo sed arcu. Aliquam eu efficitur nulla. Ut tristique tellus nec lacinia sollicitudin. Nam non mattis turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </Col>
+            <Col md style={{border: '1px solid #F7EDDB'}}>
+            <p><b>{texts.find(x => x._id === "65f2af3f8f73ec7863ff5be0").header}</b></p>
+            {texts.find(x => x._id === "65f2af3f8f73ec7863ff5be0").body.map((data) => {
+                return (
+                  <p id={data.toString()}>
+                    {data}
+                  </p>
+                )
+              })}
+              {isLoggedIn && auth.role == "admin" ?
+                (<Button id="65f2af3f8f73ec7863ff5be0" variant="danger" onClick={(e) => edit(e)}>
+                  Muokkaa
+                </Button>)
+                : null}
+            </Col>
+            <Col md>Tähän omaa sisältöäsi!
+            </Col>
+            <Col md><Social/> </Col>
           </Row>
-        </Container>)}
+
+          <Row style={{padding: '0.5vh'}}>
+          <Map/>
+          </Row>
+          </>
+        )}
+</Container>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Muokkaa tekstiä</Modal.Title>
@@ -172,12 +211,7 @@ const Home = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-        <Container fluid className="home-container">
-            <h1>Home</h1>
-            <p>Some text</p>
-            <Map/>
-            <Social/>
-        </Container>
+        
         </>
     );
 
