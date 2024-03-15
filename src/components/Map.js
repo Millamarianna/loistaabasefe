@@ -7,8 +7,8 @@ const Map = () => {
             <iframe
                 title="google-map"
                 src={`https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=Space+Needle,Seattle+WA`}
-                maxWidth="600"
-                maxHeight="450"
+                maxWidth="100%"
+                maxHeight="auto"
                 style={{ border: 0 }}
                 allowFullScreen=""
                 aria-hidden="false"

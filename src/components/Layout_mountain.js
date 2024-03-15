@@ -18,18 +18,19 @@ import Footer_forest from "./Footer_forest";
 //Import the logo in different sizes
 import logo from '../assets/logolehti.png';
 import banner from '../assets/taustabanneri.jpeg';
-import logo100 from '../assets/logo100.png';
-import logo200 from '../assets/logo200.png';
-import logo300 from '../assets/logo300.png';
 
 //Import useAuth hook
 import useAuth from "../hooks/useAuth";
 import { useEffect } from "react";
-//import { BiSolidLock } from "react-icons/bi";
-//import { BiSolidLockOpen } from "react-icons/bi";
+import useWindowSize from "../hooks/useWindowSize";
 
 const Layout_mountain = () => {
 
+  const size = useWindowSize();
+  const width = size.width;
+  const height = size.height;
+
+  //State for the hamburger menu
   const [expanded, setExpanded] = useState(false);
 
   //useAuth hook provides auth state and functions to update it
@@ -62,22 +63,20 @@ const Layout_mountain = () => {
     <>
       <Container fluid className="layout-m-container">
 
-        <Row>
+        <Row style={{ padding: '0.5vh' }}>
           {/* Change logo-image */}
-          <Col xs={3} style={{textAlign: 'right'}}> <Image src={logo} fluid style={{ maxHeight: '50px' }} /> </Col>
-          {/* Change header-text */}
-          <Col className="m-headertext" xs={4}>Yrityksesi nimi ja logo</Col>
+          <Col xs={7} className="m-headertext"> <Image src={logo} style={{ marginLeft: '1vh', marginRight: '1.5vh', maxHeight: '50px' }} /> Yrityksesi nimi ja logo </Col>
           <Col xs={5}>
             <Navbar collapseOnSelect expand="md">
               <Container className="m-navigator-container">
 
                 <Navbar.Toggle onClick={() => setExpanded(!expanded)} style={{ borderRadius: '.2rem', boxShadow: 'none' }} aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                  <Nav className="me-auto">
+                  <Nav className="me-auto ">
                     {/* Check correct link paths with router in App */}
-                    <Nav.Link as={Link} to="/">Linkki</Nav.Link>
-                    <Nav.Link as={Link} to="/">Linkki</Nav.Link>
-                    <NavDropdown title="Linkkivalikko" id="basic-nav-dropdown">
+                    <Nav.Link className="m-headertext" as={Link} to="/">Linkki</Nav.Link>
+                    <Nav.Link className="m-headertext" as={Link} to="/">Linkki</Nav.Link>
+                    <NavDropdown className="m-navdropdowntext" title="Linkkivalikko" id="basic-nav-dropdown">
                       <NavDropdown.Item as={Link} to="/">Linkki</NavDropdown.Item>
                       <NavDropdown.Item as={Link} to="/">Linkki</NavDropdown.Item>
                       <NavDropdown.Divider />
@@ -123,29 +122,29 @@ const Layout_mountain = () => {
 
         </Row>
         <Row>
-        <Col style={{ position: 'relative', maxHeight: '350px', overflow: 'hidden' }}>
-        <Image
-          src={banner}
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-          }}
-          fluid
-        />
-         <div style={{
-          position: 'absolute',
-          top: '0',
-          left: '0',
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: 'rgba(0, 0, 0, 0.5)', 
-          color: 'white',
-        }}><h3 style={{fontSize: '40px', color: 'white'}}>Tähän verkkosivujesi keskeinen sanoma.</h3></div> 
-        {/* <div style={{
+          <Col style={{ position: 'relative', maxHeight: '350px', overflow: 'hidden' }}>
+            <Image
+              src={banner}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              }}
+              fluid
+            />
+            <div style={{
+              position: 'absolute',
+              top: '0',
+              left: '0',
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              color: 'white',
+            }}><h3 style={{ paddingInlineStart: '7vw', fontSize: width > 500 ? '3vw' : '9vw', color: 'white' }}>Tähän verkkosivujesi keskeinen sanoma.</h3></div>
+            {/* <div style={{
           position: 'absolute',
           top: '10%',
           right: '5%',
@@ -165,8 +164,8 @@ const Layout_mountain = () => {
         <div style={{ width: '7%', height: '7%', backgroundColor: 'rgba(0, 0, 0, 0.5)', position: 'absolute', top: '6%', right: '8%' }}></div>
         <div style={{ width: '9%', height: '9%', backgroundColor: 'rgba(0, 0, 0, 0.5)', position: 'absolute', top: '12%', right: '16%' }}></div>
            */}
-      </Col>
-{/* <Col style={{ position: 'relative', maxHeight: '350px', overflow: 'hidden' }}>
+          </Col>
+          {/* <Col style={{ position: 'relative', maxHeight: '350px', overflow: 'hidden' }}>
         <Image
           src={banner}
           style={{
@@ -219,7 +218,15 @@ const Layout_mountain = () => {
 
 
       <Outlet />
-      <Footer_forest />
+      <Container className="m-footer-container">
+
+        <Row>
+          {/* Change footer-text */}
+          <Col className="m-headertext" xs={6}>© 2024 Loistaa Consulting</Col>
+          <Col className="m-headertext" xs={6}>web@loistaa.fi</Col>
+        </Row>
+      </Container>
+
     </>
   );
 };
