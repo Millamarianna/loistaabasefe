@@ -7,9 +7,10 @@ import {
     faInstagram
   } from "@fortawesome/free-brands-svg-icons";
 
-export default function Social() {
+export default function Social({lay}) {
   return (
-    <div className="social-container">
+    
+    <div className={lay == 1 ? "social1-container" : "social-container"}>
     <h3>Seuraa minua somessa!</h3>
     <a href="https://www.youtube.com/"
         className="youtube social">

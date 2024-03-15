@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 // Import the components
+import Layout_mountain from './components/Layout_mountain';
 import Layout_forest from './components/Layout_forest';
 import Layout_ocean from './components/Layout_ocean';
 import RequireAuthentication from './components/RequireAuthentication';
@@ -12,7 +13,7 @@ function App() {
   return (
     <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Layout_forest />}>
+      <Route path="/" element={<Layout_mountain />}>
         <Route index element={<Home lay="1" />} />
         <Route path="login" element={<Login />} />
         </Route>

@@ -1,11 +1,12 @@
 @import '~bootstrap/scss/bootstrap';
 @import 'custom';
 
-
+//Yleiset tyylit
 
 html,body {
   background-color: white; 
   height: 100vh;
+  width: 100vw;
   margin: 0;
   font-family: $fonts; 
   font-weight: 400;
@@ -15,18 +16,26 @@ html,body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h3 {
+  font-family: "swear-display", serif;
+  font-weight: 500;
+  font-style: italic;
+  color: $font-color;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+//Forest-tyylit
 
 .layout-f-container {
   padding: 20px;
 }
-
-.navigator-container {
-  padding: 20px;
-}
-
 .header-f-container {
     margin-bottom: 2vh;
 }
+
+//Ocean tyylit
+
 
 .header-o-container {
   background-image: linear-gradient( to right, transparent, #F7EDDB, transparent); 
@@ -60,32 +69,6 @@ html,body {
   color: $font-color;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-.headertext {
-    background-color: tomato;
-    color: white;
-    padding: 20px;
-    
-}
-
-.home-button {
-  background-color: #F7EDDB;
-  color: #2E3D33;
-  border: 2px solid #2E3D33;
-  --slant: 0,7em
-  padding: 16px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-}
-
-.home-button:hover {
-  background-color: #2E3D33;
-  color: white;
 }
 
 
@@ -152,6 +135,115 @@ html,body {
   color: white !important;
 }
  */
+
+.o-footer-container { 
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #E5D1B5;
+  margin-top: 2vh;
+}
+
+.o-footertext {
+font-family: "swear-display", serif;
+font-weight: 500;
+font-style: italic;
+color: $font-color;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+padding: 20px;
+align-self: flex-end;
+}
+
+
+//Mountain tyylit
+
+.layout-m-container {
+  padding: 0%;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-m-container {
+  background-image: linear-gradient( to right, transparent, #F7EDDB, transparent);
+  width: 100%;
+  border-bottom: 1px solid #E5D1B5;
+  border-top: 1px solid #F7EDDB;
+  margin-bottom: 2vh;
+  color: #2E3D33;
+}
+
+.m-headertext {
+  color: white;
+  padding: 17px;
+  font-family: $fonts;
+  color: $font-color;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+m-navigator-container {
+  padding: 20px;
+  font-family: $fonts;
+  justify-content: center;
+  align-items: center;
+}
+
+.m-button {
+  background-color: white;
+  color: #2E3D33;
+  border: 1px solid #2E3D33;
+  border-radius: 0%;
+  padding: 10px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.m-button:hover {
+  background-color: #2E3D33;
+  color: white;
+}
+
+//Home-tyylit
+
+.home1-button {
+  background-color: #ffffff;
+  color: #2E3D33;
+  border: 1px solid #2E3D33;
+  border-radius: 0%;
+  padding: 10px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.home1-button:hover {
+  background-color: #2E3D33;
+  color: white;
+}
+
+.home-button {
+  background-color: #F7EDDB;
+  color: #2E3D33;
+  border: 1px solid #2E3D33;
+  --slant: 0,7em
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.home-button:hover {
+  background-color: #2E3D33;
+  color: white;
+}
+
 .blaketon {
   font-family: mrblaketon-pro, sans-serif;
   font-weight: 400;
@@ -165,23 +257,6 @@ html,body {
     margin-top: 2vh;
 }
 
-.o-footer-container { 
-    justify-content: center;
-    align-items: center;
-    border-top: 1px solid #E5D1B5;
-  margin-top: 2vh;
-}
-
-.o-footertext {
-  font-family: "swear-display", serif;
-  font-weight: 500;
-  font-style: italic;
-  color: $font-color;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  padding: 20px;
-  align-self: flex-end;
-}
 
 .footertext {
     background-color: tomato;
@@ -195,21 +270,22 @@ html,body {
     padding: 20px;
 }
 
+//Login-tyylit
+
 .login-container {
     padding: 20px;
 }
 
-h3 {
-    font-family: "swear-display", serif;
-    font-weight: 500;
-    font-style: italic;
-    color: $font-color;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
+
+//Some-tyylit
 
 .social-container {
     background: #F7EDDB;
+    padding: 25px 50px;
+  }
+
+.social1-container {
+    background: rgba(0, 0, 0, 0.1);
     padding: 25px 50px;
   }
   
