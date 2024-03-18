@@ -99,7 +99,7 @@ const Login = (props) => {
         <div className="flex flex-col justify-center items-center">
           <input
             type="text"
-            placeholder="email@email.com"
+            placeholder="sähköposti"
             className="input input-bordered input-accent w-full max-w-xs m-3"
             name="email"
             autoComplete="off"
