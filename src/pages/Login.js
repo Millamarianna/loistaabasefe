@@ -8,15 +8,23 @@ import Container from "react-bootstrap/Container";
 import useAuth from "../hooks/useAuth";
 import cookie from 'cookie'
 
-const Login = () => {
+const Login = (props) => {
+  //show which layout is used
+  const lay = props.lay;
+  //define database
   const db = process.env.REACT_APP_DB;
+  //define state for api error
   const [apiError, setApiError] = useState();
+  //useAuth hook
   const { isLoggedIn, setLoggedIn, setAuth } = useAuth();
   const cookie = require('cookie');
+  //useNavigate hook
   let navigate = useNavigate();
 
+  //useForm hook
   const { register, handleSubmit, formState: { errors }, } = useForm();
 
+  //get user data from server
   const getUserData = async (token) => {
     const response = await fetch(`${db}/users/me`, {
       method: "GET",
@@ -41,6 +49,7 @@ const Login = () => {
     }
   };
 
+  //onFormSubmit function
   const onFormSubmit = async (data) => {
     const response = await fetch(`${db}/users/login`, {
       method: "POST",
@@ -59,6 +68,7 @@ const Login = () => {
     }
   };
 
+  //putCookies function
   function putCookies(res) {
     console.log('Response from server:', res);
     const jwt = res.token;
@@ -77,7 +87,7 @@ const Login = () => {
       
   }
 
-
+  //onErrors function
   const onErrors = (errors) => console.error(errors);
 
   return (

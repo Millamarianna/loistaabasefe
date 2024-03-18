@@ -15,12 +15,12 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout_mountain />}>
         <Route index element={<Home lay="1" />} />
-        <Route path="login" element={<Login />} />
+        <Route path="login" element={<Login lay="1" />} />
         </Route>
 
         <Route path="/vaihtoehto2" element={<Layout_ocean />}>
           <Route index element={<Home lay="2" />} />
-          <Route path="login" element={<Login />} />
+          <Route path="login" element={<Login lay="2" />} />
         </Route>
 
         {/* <Route element={<RequireAuthentication />}>
