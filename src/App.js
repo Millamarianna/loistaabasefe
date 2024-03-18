@@ -18,7 +18,7 @@ function App() {
         <Route path="login" element={<Login />} />
         </Route>
 
-        <Route path="vaihtoehto2" element={<Layout_ocean />}>
+        <Route path="/vaihtoehto2" element={<Layout_ocean />}>
           <Route index element={<Home lay="2" />} />
           <Route path="login" element={<Login />} />
         </Route>
