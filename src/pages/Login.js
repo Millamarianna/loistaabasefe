@@ -106,7 +106,7 @@ const Login = () => {
           />
           {errors?.password && errors.password.message}
 
-          <button className="btn btn-outline btn-accent m-3 btn-block">
+          <button className={lay == 1 ? "home1-button" : "home-button"}>
             Kirjaudu sisään
           </button>
         </div>
