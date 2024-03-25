@@ -66,7 +66,7 @@ const Home = (props) => {
   //fetch texts from database
   useEffect(() => {
     const getTexts = async () => {
-      const response = await fetch(`${database}/text`, {
+      const response = await fetch(`https://loistaabasebe.azurewebsites.net/text/`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -87,7 +87,7 @@ const Home = (props) => {
   //edit text by sending out request to database when "PÄIVITÄ" button is clicked
   const handleEditText = async () => {
     let id = textToEdit._id;
-    const response = await fetch(`${database}/text/${id}`, {
+    const response = await fetch(`https://loistaabasebe.azurewebsites.net/text/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
