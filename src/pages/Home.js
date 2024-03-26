@@ -270,7 +270,7 @@ const Home = (props) => {
             </Col>
             
             <Col md>
-              <Button onClick={next} className={lay == 1 ? "home1-button" : "home-button"} style={{marginBottom: '1em'}}>{<FaArrowRightLong />} Vaihda näkymää</Button>
+              <Button onClick={next} className={lay == 1 ? "home1-button" : "home-button"} style={{marginBottom: '1em'}}>{<FaArrowRightLong />} Vaihda näkymää!</Button>
             <p>Painikkeesta voit kokeilla toisenlaista ulkoasua. Ulkoasu voidaan rakentaa käyttäen näitä mallisivuja vain värejä ja kuvia vaihtamalla tai suunnittelemalla juuri yrityksellesi sopivat uniikit sivut.</p>
 
             </Col>
