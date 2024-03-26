@@ -128,7 +128,7 @@ const Home = (props) => {
   }
   //delete a specific text string from body-array in modal
   const del = (e) => {
-    let newBody = textToEdit.body.filter((item, index) => index !== e.target.id);
+    let newBody = textToEdit.body.filter((item, index) => index != e.target.id);
     setTextToEdit({ ...textToEdit, body: newBody });
   }
   //close modal
@@ -136,7 +136,7 @@ const Home = (props) => {
 
   //navigate to another page
   const next = () => {
-    if (lay === 1) {
+    if (lay == 1) {
       navigate("/vaihtoehto2", { replace: true });
     }
     else {
@@ -233,7 +233,7 @@ const Home = (props) => {
 
             </Col>
             <Col lg={12} xl={2}>
-              <Button onClick={open} className={lay === 1 ? "home1-button" : "home-button"}>{<FaArrowRightLong />} Kysy lisää!</Button>
+              <Button onClick={open} className={lay == 1 ? "home1-button" : "home-button"}>{<FaArrowRightLong />} Kysy lisää!</Button>
             </Col>
           </Row>
           <Row style={{ padding: '0.5vh' }}>
@@ -245,7 +245,7 @@ const Home = (props) => {
                   </p>
                 )
               })}
-              <Button as={Link} to="https://loistaa.fi" className={lay === 1 ? "home1-button" : "home-button"}>{<FaArrowRightLong />} Loistaa etusivulle</Button>
+              <Button as={Link} to="https://loistaa.fi" className={lay == 1 ? "home1-button" : "home-button"}>{<FaArrowRightLong />} Loistaa etusivulle</Button>
             </Col>
 
             <Col lg={12} xl={4}>
@@ -262,14 +262,14 @@ const Home = (props) => {
                   </p>
                 )
               })}
-              {isLoggedIn && auth.role === "admin" ?
+              {isLoggedIn && auth.role == "admin" ?
                 (<Button id="65f2af3f8f73ec7863ff5be0" variant="danger" onClick={(e) => edit(e)}>
                   Muokkaa
                 </Button>)
                 : null}
             </Col>
             <Col md style={{ borderTop: '1px solid #F7EDDB', borderLeft: '1px solid #F7EDDB' }}>
-              <Button onClick={next} className={lay === 1 ? "home1-button" : "home-button"} style={{paddingBottom: '1em'}}>{<FaArrowRightLong />} Vaihda näkymää</Button>
+              <Button onClick={next} className={lay == 1 ? "home1-button" : "home-button"} style={{paddingBottom: '1em'}}>{<FaArrowRightLong />} Vaihda näkymää</Button>
             <p>Painikkeesta voit kokeilla toisenlaista ulkoasua. Ulkoasu voidaan rakentaa käyttäen näitä mallisivuja vain värejä ja kuvia vaihtamalla tai suunnittelemalla juuri yrityksellesi sopivat uniikit sivut.</p>
 
             </Col>
@@ -417,7 +417,7 @@ const Home = (props) => {
 
             </Form.Group>
 
-            <Button className={lay === 1 ? "home1-button" : "home-button"} type="submit" >
+            <Button className={lay == 1 ? "home1-button" : "home-button"} type="submit" >
               LÄHETÄ
             </Button>
 
