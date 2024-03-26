@@ -431,7 +431,7 @@ const Layout_ocean = () => {
 
                 <Row>
                     {/* Change footer-text */}
-                    <Col className="o-footertext" xs={6}><Link to="https://loistaa.fi">© 2024 Loistaa Consulting</Link></Col>
+                    <Col className="o-footertext" xs={6}>© 2024 <Link to="https://loistaa.fi">Loistaa Consulting</Link></Col>
                     <Col className="o-footertext" xs={6}>info@sähköposti.fi</Col>
                 </Row>
             </Container>

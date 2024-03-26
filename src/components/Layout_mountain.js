@@ -223,7 +223,7 @@ const Layout_mountain = () => {
 
         <Row style={{ padding: '0.5vh' }}>
           {/* Change footer-text */}
-          <Col className="m-headertext" xs={6}><Link to="https://loistaa.fi">© 2024 Loistaa Consulting</Link></Col>
+          <Col className="m-headertext" xs={6}>© 2024 <Link to="https://loistaa.fi">Loistaa Consulting</Link></Col>
           <Col className="m-headertext" xs={6}>web@loistaa.fi</Col>
         </Row>
       </Container>

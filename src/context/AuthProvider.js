@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
         };
 
         updateAuthFromCookie();
-    }, [auth, db]);
+    }, []);
 
     return <AuthContext.Provider value={{ auth, setAuth, isLoggedIn, setLoggedIn }}>
         {children}

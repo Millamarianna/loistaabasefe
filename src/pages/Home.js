@@ -83,7 +83,7 @@ const Home = (props) => {
       }
     };
     getTexts();
-  }, [fetchAgain, db])
+  }, [fetchAgain])
 
   //edit text by sending out request to database when "PÄIVITÄ" button is clicked
   /* const handleEditText = async () => {
