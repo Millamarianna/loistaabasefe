@@ -245,7 +245,6 @@ const Home = (props) => {
                   </p>
                 )
               })}
-              <FaArrowRightLong /> <Link to="https://loistaa.fi"> Loistaa etusivulle</Link>
             </Col>
 
             <Col lg={12} xl={4}>
