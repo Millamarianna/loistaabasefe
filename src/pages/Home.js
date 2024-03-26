@@ -35,7 +35,7 @@ const Home = (props) => {
   const service_id = process.env.REACT_APP_EMAILJS_SERVICE_ID;
   const template_id = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
   const public_key = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
-  const database = process.env.REACT_APP_DB;
+  const db = process.env.REACT_APP_DB;
 
   //navigate to another page
   let navigate = useNavigate();
