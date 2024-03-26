@@ -245,11 +245,7 @@ const Home = (props) => {
                   </p>
                 )
               })}
-              {isLoggedIn && auth.role == "admin" ?
-                (<Button id="657c43a2ea1d95a5fc6c4092" variant="danger" onClick={(e) => edit(e)}>
-                  Muokkaa
-                </Button>)
-                : (<Button onClick={next} className={lay == 1 ? "home1-button" : "home-button"}>{<FaArrowRightLong />} Vaihda näkymä</Button>)}
+              <Button as={Link} to="https://loistaa.fi" className={lay == 1 ? "home1-button" : "home-button"}>{<FaArrowRightLong />} Loistaa etusivulle</Button>
             </Col>
 
             <Col lg={12} xl={4}>
@@ -272,7 +268,9 @@ const Home = (props) => {
                 </Button>)
                 : null}
             </Col>
-            <Col md>Tähän omaa sisältöäsi!
+            <Col md><Button onClick={next} className={lay == 1 ? "home1-button" : "home-button"}>{<FaArrowRightLong />} Vaihda näkymää</Button>
+            <p>Painikkeesta voit kokeilla toisenlaista ulkoasua. Ulkoasu voidaan rakentaa käyttäen näitä mallisivuja vain värejä ja kuvia vaihtamalla tai suunnittelemalla juuri yrityksellesi sopivat uniikit sivut.</p>
+
             </Col>
             <Col md><Social lay={lay} /> </Col>
           </Row>
