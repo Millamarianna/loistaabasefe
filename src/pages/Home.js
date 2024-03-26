@@ -297,6 +297,7 @@ const Home = (props) => {
         </Modal.Header>
         <Modal.Body>
           <Form>
+            <Form.Text muted>Malliversiossa tekstimuokkaukset eivät tallennu.</Form.Text>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Otsikko</Form.Label>
               <Form.Control type="text" placeholder={textToEdit.header} name="header" value={textToEdit.header} onChange={handleInputChange} />
