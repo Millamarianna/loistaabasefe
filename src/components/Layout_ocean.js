@@ -188,15 +188,15 @@ const Layout_ocean = () => {
                                         {isLoggedIn && auth.first_name ? (
                                             <NavDropdown title={<BiSolidLockOpen />} id="collapsible-nav-dropdown">
                                                 <NavDropdown.Item onClick={logout}>Kirjaudu ulos</NavDropdown.Item>
-                                                <NavDropdown.Divider />
+                                                {/* <NavDropdown.Divider />
                                                 <NavDropdown.Item as={Link} to="/user">Käyttäjätiedot</NavDropdown.Item>
                                                 <NavDropdown.Item as={Link} to="/appt">Ajanvaraukset</NavDropdown.Item>
-                                                <NavDropdown.Item as={Link} to="/createappt">Varaa uusi aika</NavDropdown.Item>
+                                                <NavDropdown.Item as={Link} to="/createappt">Varaa uusi aika</NavDropdown.Item> */}
                                             </NavDropdown>
                                         ) : (
                                             <NavDropdown title={<BiSolidLock />} id="collapsible-nav-dropdown">
                                                 <NavDropdown.Item as={Link} to="/vaihtoehto2/login">Kirjaudu</NavDropdown.Item>
-                                                <NavDropdown.Item as={Link} to="/vaihtoehto2/register">Rekisteröidy</NavDropdown.Item>
+                                                {/* <NavDropdown.Item as={Link} to="/vaihtoehto2/register">Rekisteröidy</NavDropdown.Item> */}
                                             </NavDropdown>
                                         )}
                                     </Nav>
