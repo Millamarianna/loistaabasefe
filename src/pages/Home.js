@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -257,7 +258,7 @@ const Home = (props) => {
           </Row>
           <Row style={{ padding: '0.5vh' }}>
             <Col md style={{ border: '1px solid #F7EDDB' }}>
-              <p><b>{texts.find(x => x._id === "65f2af3f8f73ec7863ff5be0").header}</b></p>
+              <Link to="/login"><p><b>{texts.find(x => x._id === "65f2af3f8f73ec7863ff5be0").header}</b></p></Link>
               {texts.find(x => x._id === "65f2af3f8f73ec7863ff5be0").body.map((data) => {
                 return (
                   <p id={data.toString()}>
