@@ -245,7 +245,7 @@ const Home = (props) => {
                   </p>
                 )
               })}
-              <Button as={Link} to="https://loistaa.fi" className={lay == 1 ? "home1-button" : "home-button"}>{<FaArrowRightLong />} Loistaa etusivulle</Button>
+              <p as={Link} to="https://loistaa.fi" className={lay == 1 ? "home1-button" : "home-button"}>{<FaArrowRightLong />} Loistaa etusivulle</p>
             </Col>
 
             <Col lg={12} xl={4}>
@@ -253,8 +253,8 @@ const Home = (props) => {
             </Col>
           </Row>
           <Row style={{ padding: '0.5vh' }}>
-            <Col md style={{ borderTop: '1px solid #F7EDDB', borderLeft: '1px solid #F7EDDB' }}>
-              <Link to="/login"><p><b>{texts.find(x => x._id === "65f2af3f8f73ec7863ff5be0").header}</b></p></Link>
+            <Col md>
+              <Button as={Link} to="/login" className={lay == 1 ? "home1-button" : "home-button"}>{texts.find(x => x._id === "65f2af3f8f73ec7863ff5be0").header}</Button>
               {texts.find(x => x._id === "65f2af3f8f73ec7863ff5be0").body.map((data) => {
                 return (
                   <p id={data.toString()}>
@@ -268,7 +268,8 @@ const Home = (props) => {
                 </Button>)
                 : null}
             </Col>
-            <Col md style={{ borderTop: '1px solid #F7EDDB', borderLeft: '1px solid #F7EDDB' }}>
+            
+            <Col md>
               <Button onClick={next} className={lay == 1 ? "home1-button" : "home-button"} style={{paddingBottom: '1em'}}>{<FaArrowRightLong />} Vaihda näkymää</Button>
             <p>Painikkeesta voit kokeilla toisenlaista ulkoasua. Ulkoasu voidaan rakentaa käyttäen näitä mallisivuja vain värejä ja kuvia vaihtamalla tai suunnittelemalla juuri yrityksellesi sopivat uniikit sivut.</p>
 
