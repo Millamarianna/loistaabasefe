@@ -24107,8 +24107,8 @@ a:visited {
 .header-m-container {
   background-image: linear-gradient(to right, transparent, #F7EDDB, transparent);
   width: 100%;
-  border-bottom: 1px solid #E5D1B5;
-  border-top: 1px solid #F7EDDB;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   margin-bottom: 2vh;
   color: #2E3D33;
 }

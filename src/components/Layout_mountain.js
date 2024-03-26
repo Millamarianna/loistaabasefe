@@ -23,6 +23,7 @@ import banner from '../assets/taustabanneri.jpeg';
 import useAuth from "../hooks/useAuth";
 import { useEffect } from "react";
 import useWindowSize from "../hooks/useWindowSize";
+import { set } from "react-hook-form";
 
 const Layout_mountain = () => {
 
@@ -45,7 +46,7 @@ const Layout_mountain = () => {
     } else {
       setLoggedIn(false);
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, setLoggedIn]);
 
   //Logout function
   const logout = () => {
@@ -218,9 +219,9 @@ const Layout_mountain = () => {
 
 
       <Outlet />
-      <Container className="m-footer-container">
+      <Container fluid className="m-footer-container">
 
-        <Row>
+        <Row style={{ padding: '0.5vh' }}>
           {/* Change footer-text */}
           <Col className="m-headertext" xs={6}>© 2024 Loistaa Consulting</Col>
           <Col className="m-headertext" xs={6}>web@loistaa.fi</Col>

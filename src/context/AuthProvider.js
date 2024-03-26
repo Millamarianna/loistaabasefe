@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
             if (jwtCookie) {
                 const jwtToken = jwtCookie.split("=")[1];
 
-                const response = await fetch(`${db}/users/me`, {
+                const response = await fetch(`https://${db}/users/me`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
         };
 
         updateAuthFromCookie();
-    }, []);
+    }, [auth, db]);
 
     return <AuthContext.Provider value={{ auth, setAuth, isLoggedIn, setLoggedIn }}>
         {children}
