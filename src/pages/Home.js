@@ -279,8 +279,8 @@ const Home = (props) => {
 
           <Row style={{ padding: '0.5vh' }}>
           <Col md>
-            <p>Sijoita sivuillesi kartta yrityksesi toimipisteeseen tai valitse tilalle muita toiminnallisuuksia.</p>
             <Map />
+            <p>Sijoita sivuillesi kartta yrityksesi toimipisteeseen tai valitse tilalle muita toiminnallisuuksia.</p>
             </Col>
           </Row>
         </>
