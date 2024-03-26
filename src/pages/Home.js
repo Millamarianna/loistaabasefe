@@ -43,6 +43,17 @@ const Home = (props) => {
   const lay = props.lay;
   //useAuth hook provides auth state and functions to update it
   const { isLoggedIn, setLoggedIn, auth, setAuth } = useAuth();
+  //Logout function
+  const logout = () => {
+    // Perform logout actions
+    console.log('Before deleting cookie:', document.cookie);
+    document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    console.log('After setting cookie:', document.cookie);
+
+    // Update login state to trigger re-render
+    setLoggedIn(false);
+    setAuth({});
+  };
   //set texts to state
   const [texts, setTexts] = useState([]);
   //set text to edit to state
@@ -259,7 +270,8 @@ const Home = (props) => {
           </Row>
           <Row style={{ padding: '0.5vh' }}>
             <Col md style={{borderRight: '0.5px solid rgba(0, 0, 0, 0.1)'}}>
-              <Button as={Link} to="/login" className={lay == 1 ? "home1-button" : "home-button"} style={{marginBottom: '1em'}}>{<FaArrowRightLong />} {texts.find(x => x._id === "65f2af3f8f73ec7863ff5be0").header}</Button>
+            {isLoggedIn && auth.role == "admin" ? (<Button onClick={logout} className={lay == 1 ? "home1-button" : "home-button"} style={{marginBottom: '1em'}}>{<FaArrowRightLong />} Kirjaudu ulos</Button>)
+              :(<Button as={Link} to="/login" className={lay == 1 ? "home1-button" : "home-button"} style={{marginBottom: '1em'}}>{<FaArrowRightLong />} {texts.find(x => x._id === "65f2af3f8f73ec7863ff5be0").header}</Button>)}
               {texts.find(x => x._id === "65f2af3f8f73ec7863ff5be0").body.map((data) => {
                 return (
                   <p id={data.toString()}>

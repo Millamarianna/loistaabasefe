@@ -124,8 +124,8 @@ const Login = (props) => {
       
           <div>
             <p>Admin-tunnukset tekstimuokkausta varten:</p>
-            <br>Sähköposti: admin@admin.fi</br>
-            <br>Salasana: admin</br>
+            Sähköposti: admin@admin.fi<br/>
+            Salasana: admin
           </div>
 
       {apiError && (
