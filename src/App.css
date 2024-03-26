@@ -23954,6 +23954,23 @@ h3, .h3 {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a {
+  color: black;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #2E3D33;
+}
+
+a:active {
+  color: #2E3D33;
+}
+
+a:visited {
+  color: black;
+}
+
 .layout-f-container {
   padding: 20px;
 }

@@ -26,6 +26,23 @@ h3 {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a {
+  color: $font-color;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #2E3D33;
+}
+
+a:active {
+  color: #2E3D33;
+}
+
+a:visited {
+  color: $font-color;
+}
+
 //Forest-tyylit
 
 .layout-f-container {
