@@ -17,28 +17,38 @@ import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import Toast from 'react-bootstrap/Toast';
 
 import logo from '../assets/treelogo2.png';
 
 import useAuth from "../hooks/useAuth";
+import useWindowSize from "../hooks/useWindowSize";
 
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross1 } from "react-icons/rx";
 
 import { BiSolidLock } from "react-icons/bi";
 import { BiSolidLockOpen } from "react-icons/bi";
+import { IoCopyOutline } from "react-icons/io5";
+import { CiSquareQuestion } from "react-icons/ci";
 
 
 const Layout_ocean = () => {
+
+    //env variables
+    const service_id = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+    const template_id = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+    const public_key = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+
     const [expanded, setExpanded] = useState(false);
     const [show, setShow] = useState(false);
+    const [lay, setLay] = useState(2);
+    const size = useWindowSize();
+    const width = size.width;
+    const height = size.height;
 
-    const open = () => {
-        setShow(true);
-    }
-    const handleClose = () => {
-        setShow(false);
-    }
+
+
     //useAuth hook provides auth state and functions to update it
     const { isLoggedIn, setLoggedIn, auth, setAuth } = useAuth();
 
@@ -65,20 +75,90 @@ const Layout_ocean = () => {
         setAuth({});
     };
 
-    const doNothing = (e) => {
-        e.preventDefault();
-        setShow(false);}
+    //send email
+  const [show2, setShow2] = useState(false);
+  const [showEmailSent, setShowEmailSent] = useState(false);
+  const [showEmailNotSent, setShowEmailNotSent] = useState(false);
+  const [formText, setFormText] = useState({});
+  const [showCopy, setShowCopy] = useState(false);
 
-    const renderTooltip = (props) => (
-        <Tooltip id="button-tooltip" {...props}>
-          Tämä lomake on malli eikä ole toiminnassa!
-        </Tooltip>
-      );
+  //open email modal
+  const open = () => {
+    setShow2(true);
+  }
+  const handleClose2 = () => setShow2(false);
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    const data = {
+      service_id: service_id,
+      template_id: template_id,
+      user_id: public_key,
+      template_params: {
+        'first_name': formText.first_name,
+        'last_name': formText.last_name,
+        'email': formText.email,
+        'company': formText.company,
+        'message': formText.message,
+        'service0': formText.service0,
+        'service1': formText.service1,
+        'service2': formText.service2,
+        'service3': formText.service3,
+        'service4': formText.service4,
+        'service5': formText.service5,
+        'service6': formText.service6,
+        'service7': formText.service7,
+        'service_else': formText.service_else,
+      }
+    };
+
+    const sendRequest = async () => {
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        setShow2(false);
+        setShowEmailSent(true);
+        setFormText({});
+      } else {
+        console.log("Email not sent");
+        setShowEmailNotSent(true);
+      }
+    }
+    sendRequest();
+  }
+
+  const formStyle = {
+    textAlign: 'left',
+    fontSize: '1em',
+    fontWeight: '700',
+    color: '#000000',
+  };
+  const saveTyped = (e) => {
+    if (e.target.type === "checkbox") {
+      setFormText({ ...formText, [e.target.name]: e.target.checked });
+    } else {
+      setFormText({ ...formText, [e.target.name]: e.target.value });
+
+    }
+    console.log(formText);
+  }
+  const services = {
+    "label": ["Sisällöntuotanto", "Graafinen suunnittelu", "Palvelintila", "Uusi domain", "Ylläpito", "Tietokanta", "Käyttäjävarmennus", "Käyttöliittymä tekstimuokkauksille"],
+    "description": ["Ideastasi konkreettiseksi tekstiksi verkkosivuillesi.", "Visuaalinen ilme ja grafiikat verkkosivuillesi.", "Pilvessä sijaitseva tallennustila verkkosivuille.", "Sivustosi osoite, joka kirjoitetaan nettiselaimen osoitekenttään.", "Tarvittavat päivitykset esimerkiksi kuukausimaksulla tai päivityskohtaisella kustannuksilla.", "Mahdollisuus tallentaa pysyvästi tietoja, esimerkiksi lomaketietoja.", "Mahdollisuus rekisteröityä käyttäjäksi ja kirjautua sisään päästäkseen käsiksi joihinkin sisältöihin.", "Mahdollisuus kirjautua muokkaamaan tekstejä helposti itse."]
+  };
+  const tooltipPlace = size.width < 450 ? "top" : "right";
+
 
 
     return (
         <Container className="layout-container" fluid>
-            
+
             <Container className="header-o-container">
                 <Row className="align-items-center">
                     <Col>
@@ -136,7 +216,7 @@ const Layout_ocean = () => {
                 </Row>
             </Container>
 
-            <Modal show={show} onHide={handleClose}>
+            {/* <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Yhteydenottolomake</Modal.Title>
                 </Modal.Header>
@@ -216,23 +296,136 @@ const Layout_ocean = () => {
                             Tämä lomake on malli, eikä ole toiminnassa! Ota yhteyttä sähköpostitse web@loistaa.fi tai osoitteessa loistaa.fi.
                         </Form.Text>
                         <hr />
-                        
+
                         <OverlayTrigger
-      placement="right"
-      delay={{ show: 250, hide: 400 }}
-      overlay={renderTooltip}
-    >
-      <Button type="submit">LÄHETÄ</Button>
-    </OverlayTrigger>
+                            placement="right"
+                            delay={{ show: 250, hide: 400 }}
+                            overlay={renderTooltip}
+                        >
+                            <Button type="submit">LÄHETÄ</Button>
+                        </OverlayTrigger>
 
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
 
                 </Modal.Footer>
-            </Modal>
-        
-            
+            </Modal> */}
+
+            <Modal show={show2} onHide={handleClose2}>
+        <Modal.Header closeButton>
+          <Modal.Title>Kotisivu-paketti</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <Form onSubmit={sendEmail}>
+            <Row id="names" className="mb-1 g-1">
+
+              <Form.Text style={formStyle} onClick={async () => {
+                if ("clipboard" in navigator) {
+                  await navigator.clipboard.writeText("web@loistaa.fi");
+                } else {
+                  document.execCommand("copy", true, "web@loistaa.fi");
+                }
+                setShowCopy(true);
+              }}>
+                Pyydä tarjousta sähköpostilla web@loistaa.fi <sup>{<IoCopyOutline size={10} />}</sup> tai täytä tarjouslomake:
+              </Form.Text>
+              <div className="typewriter"
+                style={{ zIndex: '100', position: 'absolute', top: '5%', right: '2%', maxWidth: '50%', fontSize: 'calc(14px + (21 - 14) * ((100vw - 300px) / (1600 - 300)))', }}>
+                <Toast onClose={() => setShowCopy(false)} show={showCopy} delay={2000} autohide>
+                  Kopioitu leikepöydälle!
+                </Toast>
+              </div>
+              <div className="typewriter"
+                style={{ position: 'absolute', zIndex: '100', bottom: '10%', left: '2%', maxWidth: '75%', fontSize: 'calc(14px + (21 - 14) * ((100vw - 300px) / (1600 - 300)))', }}>
+                <Toast onClose={() => setShowEmailNotSent(false)} show={showEmailNotSent} delay={6000} autohide>
+                  <p>Virhe lomakkeen lähetyksessä. Voit kopioida kentät ja lähettää ne meille sähköpostilla!</p>Pahoittelut vaivasta, korjaamme vian mahdollisimman pian!
+                </Toast>
+              </div>
+
+              <Form.Text muted>Yleiset tiedot</Form.Text>
+
+              <Form.Group as={Col}>
+                <FloatingLabel controlId="floatingFirstName" label="Etunimi" className="mb-0 g-0">
+                  <Form.Control autocomplete="on" aria-label="Etunimi" type="name" placeholder="Etunimi" name="first_name" value={formText.first_name} onChange={saveTyped} />
+                </FloatingLabel>
+              </Form.Group>
+
+              <Form.Group as={Col}>
+                <FloatingLabel controlId="floatingLastName" label="Sukunimi" className="mb-0 g-0">
+                  <Form.Control autocomplete="on" aria-label="Sukunimi" type="name" placeholder="Sukunimi" name="last_name" value={formText.last_name} onChange={saveTyped} />
+                </FloatingLabel>
+              </Form.Group>
+            </Row>
+
+            <Form.Group className="mb-1 g-1">
+              <FloatingLabel controlId="floatingEmail" label="Sähköposti" className="mb-0 g-0">
+                <Form.Control autocomplete="on" aria-label="Sähköposti" type="email" placeholder="Sähköposti" name="email" value={formText.email} onChange={saveTyped} />
+              </FloatingLabel>
+            </Form.Group>
+
+            <Form.Group className="mb-1 g-1">
+              <FloatingLabel controlId="floatingCompany" label="Yrityksen nimi" className="mb-0 g-0">
+                <Form.Control autocomplete="on" aria-label="Yrityksen nimi" placeholder="Yrityksen nimi" name="company" value={formText.company} onChange={saveTyped} />
+              </FloatingLabel>
+            </Form.Group>
+
+            <Form.Group className="mb-1 g-1">
+              <FloatingLabel controlId="floatingMessage" label="Viesti" className="mb-1 g-1">
+                <Form.Control aria-label="Viesti" as="textarea" rows={4} name="site_description" value={formText.message} onChange={saveTyped} placeholder="Viesti" />
+              </FloatingLabel>
+            </Form.Group>
+
+            <hr />
+
+            <Row className="mb-1 g-1">
+              <Form.Text muted>Tarvitsemasi palvelut</Form.Text>
+            </Row>
+
+            {services.label.map((label, index) => {
+              const description = services.description[index];
+
+              return (
+                <Row id={index} className="mb-0 g-0">
+                  <Form.Group as={Col}>
+                    <Form.Check
+                      type="checkbox"
+                      id={`s${index}`}
+                      label={label}
+                      name={`service${index}`}
+                      onChange={saveTyped}
+                    />
+                  </Form.Group>
+
+                  <Form.Group as={Col}>
+                    <OverlayTrigger
+                      key={`info${index}`}
+                      placement={tooltipPlace}
+                      overlay={<Tooltip id={index}>{description}</Tooltip>}>
+                      <Form.Text muted>{<CiSquareQuestion size={26} />}</Form.Text>
+                    </OverlayTrigger>
+                  </Form.Group>
+                </Row>)
+            })}
+            <Form.Group className="mb-1 g-1">
+
+              <Form.Control aria-label="Muuta" as="textarea" rows={3} placeholder="Muuta" name="service_else" value={formText.service_else} onChange={saveTyped} />
+
+            </Form.Group>
+
+            <Button className={lay == 1 ? "home1-button" : "home-button"} type="submit" >
+              LÄHETÄ
+            </Button>
+
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+
+        </Modal.Footer>
+      </Modal>
+
+
             <Outlet />
             <Container className="o-footer-container">
 
