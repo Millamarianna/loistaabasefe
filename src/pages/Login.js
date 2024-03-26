@@ -121,6 +121,12 @@ const Login = (props) => {
           </button>
         </div>
       </form>
+      
+          <div>
+            <p>Admin-tunnukset tekstimuokkausta varten:</p>
+            <p>Sähköposti: admin@admin.fi</p>
+            <p>Salasana: admin</p>
+          </div>
 
       {apiError && (
         <div className="alert alert-error shadow-lg">

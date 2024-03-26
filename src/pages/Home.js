@@ -86,7 +86,7 @@ const Home = (props) => {
   }, [fetchAgain, db])
 
   //edit text by sending out request to database when "PÄIVITÄ" button is clicked
-  const handleEditText = async () => {
+  /* const handleEditText = async () => {
     let id = textToEdit._id;
     const response = await fetch(`https://${db}/text/${id}`, {
       method: "PUT",
@@ -105,6 +105,12 @@ const Home = (props) => {
       let errorResponse = await response.json();
       console.log("ei onnistunut:" + errorResponse["detail"]);
     }
+  }; */
+
+  //mock edit text function that only closes the modal
+  const handleEditText = () => {
+    setShow(false);
+    setTextToEdit({ "_id": "", "page": "home", "header": "", "body": [""], "type": "", "date": "", "time": "", "duration": "", "show": "" });
   };
   //when "Muokkaa" button is clicked, set the spesific text to edit (from database) to state and show modal
   const edit = (e) => {
