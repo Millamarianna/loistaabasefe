@@ -26,7 +26,7 @@ const Login = (props) => {
 
   //get user data from server
   const getUserData = async (token) => {
-    const response = await fetch(`${db}/users/me`, {
+    const response = await fetch(`https://${db}/users/me`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -51,7 +51,7 @@ const Login = (props) => {
 
   //onFormSubmit function
   const onFormSubmit = async (data) => {
-    const response = await fetch(`${db}/users/login`, {
+    const response = await fetch(`https://${db}/users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
